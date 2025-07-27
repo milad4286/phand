@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         loginpage.h loginpage.cpp
         translate.h translate.cpp
         homepage.h homepage.cpp
+        im.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET phand APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

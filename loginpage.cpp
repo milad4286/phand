@@ -5,33 +5,36 @@
 loginpage::loginpage(QWidget *parent) : QWidget(parent) {
 
 
-
-    QLabel *userLabel = new QLabel("نام کاربری");
-    QLabel *passLabel = new QLabel("رمز عبور");
-
     usernameEdit = new QLineEdit(this);
     passwordEdit = new QLineEdit(this);
+    QFont font;
+    font.setPointSize(18);
+    usernameEdit->setFont(font);
+    passwordEdit->setFont(font);
+    usernameEdit->setPlaceholderText("نام کاربری");
+    passwordEdit->setPlaceholderText("رمز عبور");
+    // usernameEdit->setAlignment(Qt::AlignRight);
+    // passwordEdit->setAlignment(Qt::AlignRight);
     passwordEdit->setEchoMode(QLineEdit::Password);
 
     // تعریف دکمه ها و استاتوس بار
 
-    QPushButton *loginButton = new QPushButton("ورود");
+    loginButton = new QPushButton("ورود");
     loginButton->setObjectName("loginbutton");
-    QPushButton *cansell = new QPushButton(" کنسل ");
+    cansell = new QPushButton(" کنسل ");
+    cansell->setObjectName("loginbutton");
     statusLabel = new QLabel(this);
 
 
-    QVBoxLayout *verloglayout = new QVBoxLayout();
+    verloglayout = new QVBoxLayout();
 
     // لایه لاین ادیت ها
     loggride = new QGridLayout();
-    loggride->addWidget(userLabel    , 0  , 0);
     loggride->addWidget(usernameEdit , 0  , 1);
-    loggride->addWidget(passLabel    , 1  , 0);
     loggride->addWidget(passwordEdit , 1  , 1);
 
     // لایه دکمه ها
-    QHBoxLayout *buttonlayout = new QHBoxLayout();
+    buttonlayout = new QHBoxLayout();
     buttonlayout ->addWidget(cansell);
     buttonlayout ->addWidget(loginButton);
 
@@ -64,10 +67,10 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
 
 
     // اضافه کردن لایه اصلی
-    QVBoxLayout * vcentrallayout = new QVBoxLayout(this);
+    vcentrallayout = new QVBoxLayout(this);
 
 
-    QHBoxLayout *hcentrallayout = new QHBoxLayout();
+    hcentrallayout = new QHBoxLayout();
     hcentrallayout->addStretch();
     hcentrallayout->addWidget(frame);
     hcentrallayout->addStretch();
@@ -76,6 +79,7 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
     vcentrallayout->addStretch();
 
     setLayout(vcentrallayout);
+
 
 
     // کانکت ها

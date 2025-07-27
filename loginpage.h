@@ -24,6 +24,12 @@ private slots:
 private:
     QLineEdit *usernameEdit;
     QLineEdit *passwordEdit;
+    QPushButton *loginButton;
+    QPushButton *cansell;
+    QVBoxLayout *verloglayout;
+    QHBoxLayout *buttonlayout;
+    QVBoxLayout * vcentrallayout;
+    QHBoxLayout *hcentrallayout;
     QLabel *statusLabel;
     QGridLayout * loggride ;
     QFrame *frame;
