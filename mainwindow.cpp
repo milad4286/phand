@@ -1,50 +1,33 @@
 #include "mainwindow.h"
+#include<QString>
+#include<QPushButton>
 #include<QVBoxLayout>
-#include<QHBoxLayout>
-#include<QGridLayout>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-{
-
-    //centralwidget   only in Qmainwindow
-
-    auto *Centralwidget = new QWidget(this) ;
-    Centralwidget->setObjectName("mainwidget");
-
-    // layouts
-
-    QVBoxLayout *vcentral = new QVBoxLayout(this);
-    QHBoxLayout *hcentral = new QHBoxLayout(this);
-    QGridLayout *gcentrl  = new QGridLayout(this);
-
-    //buttons
-
-    loginbtn = new QPushButton( "ثبت نام") ;
-    loginbtn->setObjectName("loginbutton");
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
 
+    auto *centralw = new QWidget(this);
+    stack          = new QStackedWidget();
+    login_page     = new loginpage();
+    home_page      = new homepage();
+    translate_page = new translate();
+
+    stack->addWidget(home_page);  // index 0
+    stack->addWidget(login_page);   // index 1
+    stack->addWidget(translate_page) ; // index 2
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(stack);
 
 
+    connect(login_page, &loginpage::loginSuccessful, this,[=](){stack->setCurrentIndex(0);});
+    connect(home_page ,&homepage::gotologinpage , this , [=](){stack->setCurrentIndex(1);});
+    connect(home_page, &homepage::gototrpage , this ,[=](){stack->setCurrentIndex(2);}) ;
+
+    stack->setCurrentIndex(0); // set mainpage first
 
 
-
-
-
-
-
-
-    gcentrl->addWidget(loginbtn,0,0);
-    hcentral->addStretch();
-    hcentral->addLayout(gcentrl);
-    hcentral->addStretch();
-    vcentral->addStretch();
-    vcentral->addLayout(hcentral);
-    vcentral->addStretch();
-
-    Centralwidget->setLayout(vcentral);
-    setCentralWidget(Centralwidget);
-
+    centralw->setLayout(mainLayout);
+    setCentralWidget(centralw) ;
 }
 
-MainWindow::~MainWindow() {}

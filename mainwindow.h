@@ -1,17 +1,22 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
+#ifndef HANDELERPAGES_H
+#define HANDELERPAGES_H
+#include <QStackedWidget>
 #include <QMainWindow>
-#include<QPushButton>
+#include "loginpage.h"
+#include "homepage.h"
+#include"translate.h"
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-private :
-    QPushButton *loginbtn ;
+private:
+    QStackedWidget *stack;
+    loginpage      *login_page;
+    homepage       *home_page;
+    translate      *translate_page ;
+
 };
-#endif // MAINWINDOW_H
+
+#endif // HANDELERPAGES_H
