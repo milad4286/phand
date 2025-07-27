@@ -3,10 +3,13 @@
     color: white;
     border-radius: 8px;
     padding: 8px;
-}
+
 
 #loginbutton:hover {
     background-color: #005a9e;
+    color:green ;
+    border-redius: 20px ;
+    padding: 20px ;
 }
 
 #mainwidget {
