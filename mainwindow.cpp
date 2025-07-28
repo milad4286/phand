@@ -3,6 +3,7 @@
 #include<QPushButton>
 #include<QVBoxLayout>
 
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
 
@@ -30,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     connect(home_page, &homepage::gototrpage , this ,[=](){stack->setCurrentIndex(2);}) ;
 
     connect(login_page, &loginpage::signsuccessful , this ,[=](){stack->setCurrentIndex(3);}) ;
+
+
 
     connect(signup_page, &signup::signenter , this ,[=](){stack->setCurrentIndex(1);}) ;
     connect(signup_page, &signup::signback , this ,[=](){stack->setCurrentIndex(0);}) ;

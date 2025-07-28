@@ -1,14 +1,13 @@
 #include "signup.h"
 
 
-
 signup::signup(QWidget *parent) : QWidget(parent){
 
-    QLineEdit *sign_name = new QLineEdit;
-    QLineEdit *sign_password = new QLineEdit;
+    sign_name = new QLineEdit;
+    sign_password = new QLineEdit;
 
-    QPushButton *sign_enter = new QPushButton("ثبت نام");
-    QPushButton *sign_back = new QPushButton("صفحه ورود");
+    sign_enter = new QPushButton("ثبت نام");
+    sign_back = new QPushButton("صفحه ورود");
 
     QFont font;
     font.setPointSize(18);
@@ -42,7 +41,7 @@ signup::signup(QWidget *parent) : QWidget(parent){
     verloglayout->addLayout(loggride);
 
     signLayout = new QHBoxLayout();
-    // signLayout->addWidget(sign);
+
     signLayout->addStretch();
     verloglayout->addLayout(signLayout);
 
@@ -81,9 +80,29 @@ signup::signup(QWidget *parent) : QWidget(parent){
 
 //////////////////////////////////////////////////////
 void signup::enters(){
-    emit signenter();
 
+    QString username = sign_name->text();
+    QString password = sign_password->text();
+
+    if (username.isEmpty() || password.isEmpty()) {
+        statusLabel->setText("نام کاربری یا رمز عبور خالی است.");
+        return;
+    }
+
+    // ذخیره در فایل
+    QFile file("userdata.txt");
+    if (!file.open(QIODevice::Append | QIODevice::Text)) {
+        statusLabel->setText("خطا در ذخیره اطلاعات.");
+        return;
+    }
+
+    QTextStream out(&file);
+    out << username << "," << password << "\n";
+    file.close();
+
+    emit signenter(); // بعد از ذخیره موفقیت‌آمیز، برو صفحه لاگین
 }
+
 
 //////////////////////////////////////////////////////
 void signup:: backs(){

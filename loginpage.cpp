@@ -105,12 +105,35 @@ void loginpage::tryLogin() {
     QString user = usernameEdit->text();
     QString pass = passwordEdit->text();
 
-    if (user == "admin" && pass == "1234") {
-        emit loginSuccessful();
+    QFile file("userdata.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        statusLabel->setText("فایل اطلاعات پیدا نشد.");
+        return;
+    }
+
+    QTextStream in(&file);
+    bool found = false;
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList parts = line.split(',');
+        if (parts.size() == 2) {
+            QString fileUser = parts[0].trimmed();
+            QString filePass = parts[1].trimmed();
+            if (fileUser == user && filePass == pass) {
+                found = true;
+                break;
+            }
+        }
+    }
+    file.close();
+
+    if (found) {
+        emit loginSuccessful(); // ورود موفق
     } else {
-        statusLabel->setText("ورود نامعتبر است.");
+        statusLabel->setText("نام کاربری یا رمز عبور اشتباه است.");
     }
 }
+
 
 ///////////////////////////////////////////////////
 void loginpage::Cansell(){

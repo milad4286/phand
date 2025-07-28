@@ -9,6 +9,10 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QFrame>
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
+#include <QDebug>
 
 class loginpage : public QWidget {
     Q_OBJECT
