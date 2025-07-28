@@ -41,7 +41,7 @@ private:
     QHBoxLayout *buttonlayout;
     QHBoxLayout *hcentrallayout;
     QHBoxLayout *signLayout;
-    QVBoxLayout * vcentrallayout;
+    QVBoxLayout *vcentrallayout;
     QVBoxLayout *verloglayout;
 
     QLabel *statusLabel;

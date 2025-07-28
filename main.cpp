@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     // لود کردن QSS
-    QString style = loadStyleSheet("D:/qt project/QT_widget/phand/style.qss");
+    QString style = loadStyleSheet("C:/Users/milad/Desktop/projectv1.0/phand/style.qss");
 
 
     a.setStyleSheet(style);

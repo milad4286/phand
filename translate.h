@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QImage> // مناسب هم برای دخیره و هم برای پردازش تصویر بر خلاف pixmap
-
+#include<QFrame>
 class translate : public QWidget
 {
     Q_OBJECT
@@ -20,7 +20,10 @@ private slots:
 private:
     QLabel *imageLabel; //  لیبل برای نمایش عکس
     QImage loadedImage; // تصویر اصلی برای پردازش
-    QPushButton *loadButton;
+     QPushButton *select_image;
+     QPushButton *select_vedio;
+     QPushButton *select_cam;
+    QFrame * mainframe ;
     void displayImage(const QImage &image); // تابع برای نمایش عکس
 };
 
