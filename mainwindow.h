@@ -5,6 +5,8 @@
 #include "loginpage.h"
 #include "homepage.h"
 #include"translate.h"
+#include"signup.h"
+
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -15,7 +17,8 @@ private:
     QStackedWidget *stack;
     loginpage      *login_page;
     homepage       *home_page;
-    translate      *translate_page ;
+    translate      *translate_page;
+    signup         *signup_page;
 
 };
 

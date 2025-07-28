@@ -1,5 +1,7 @@
 #ifndef LOGINPAGE_H
 #define LOGINPAGE_H
+#include<QGraphicsDropShadowEffect>
+
 #include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
@@ -16,23 +18,34 @@ public:
 
 signals:
     void loginSuccessful();
+    void Cansellsuccessful();
+    void signsuccessful();
 
 private slots:
     void tryLogin();
     void Cansell();
+    void sign_up();
 
 private:
     QLineEdit *usernameEdit;
     QLineEdit *passwordEdit;
+
     QPushButton *loginButton;
     QPushButton *cansell;
-    QVBoxLayout *verloglayout;
+    QPushButton *sign;
+
     QHBoxLayout *buttonlayout;
-    QVBoxLayout * vcentrallayout;
     QHBoxLayout *hcentrallayout;
+    QHBoxLayout *signLayout;
+    QVBoxLayout * vcentrallayout;
+    QVBoxLayout *verloglayout;
+
     QLabel *statusLabel;
     QGridLayout * loggride ;
     QFrame *frame;
+
+    QGraphicsDropShadowEffect *shadow;
+
 };
 
 #endif // LOGINPAGE_H

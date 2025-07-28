@@ -3,7 +3,7 @@
     color: white;
     border-radius: 8px;
     padding: 8px;
-
+}
 
 #loginbutton:hover {
     background-color: #005a9e;
@@ -15,4 +15,11 @@
 #mainwidget {
 
 background-color:lightgreen;
+}
+
+#signbutton {
+    //background-color: #;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
 }

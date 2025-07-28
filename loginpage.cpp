@@ -1,6 +1,5 @@
 #include "loginpage.h"
 
-#include<QGraphicsDropShadowEffect>
 
 loginpage::loginpage(QWidget *parent) : QWidget(parent) {
 
@@ -23,6 +22,10 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
     loginButton->setObjectName("loginbutton");
     cansell = new QPushButton(" کنسل ");
     cansell->setObjectName("loginbutton");
+    sign = new QPushButton("ثبت نام کنید");
+    sign->setObjectName("signbutton");
+
+
     statusLabel = new QLabel(this);
 
 
@@ -33,6 +36,7 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
     loggride->addWidget(usernameEdit , 0  , 1);
     loggride->addWidget(passwordEdit , 1  , 1);
 
+
     // لایه دکمه ها
     buttonlayout = new QHBoxLayout();
     buttonlayout ->addWidget(cansell);
@@ -40,9 +44,15 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
 
 
 
+
     //  ترتیب لایه ها برای نمایش
     verloglayout->addStretch(); // فاصله از بالا
     verloglayout->addLayout(loggride);
+
+    signLayout = new QHBoxLayout();
+    signLayout->addWidget(sign);
+    signLayout->addStretch();
+    verloglayout->addLayout(signLayout);
 
     verloglayout->addWidget(statusLabel);
 
@@ -58,7 +68,7 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
     frame->setLayout(verloglayout);
     frame->setMinimumSize(600, 400); //  اندازه دلخواه وسط صفحه
     ///////////////   سایه دور فرم
-    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
+    shadow = new QGraphicsDropShadowEffect(this);
     shadow->setBlurRadius(20);
     shadow->setOffset(0, 0);
     shadow->setColor(QColor(0, 0, 0, 150));
@@ -86,6 +96,7 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
 
     connect(loginButton, &QPushButton::clicked, this, &loginpage::tryLogin);
     connect(cansell, &QPushButton::clicked, this, &loginpage::Cansell);
+    connect(sign, &QPushButton::clicked, this, &loginpage::sign_up);
 
 
 }
@@ -103,6 +114,13 @@ void loginpage::tryLogin() {
 
 ///////////////////////////////////////////////////
 void loginpage::Cansell(){
+    emit Cansellsuccessful();
 
 }
+//////////////////////////////////////////////////////
+void loginpage::sign_up(){
+    emit signsuccessful();
+
+}
+
 
