@@ -4,8 +4,13 @@
 loginpage::loginpage(QWidget *parent) : QWidget(parent) {
 
 
+    this->setStyleSheet("QFrame#frameBox { background-color: #d0f0c0; }");
+
+
     usernameEdit = new QLineEdit(this);
     passwordEdit = new QLineEdit(this);
+    usernameEdit->setObjectName("QLineEditt");
+    passwordEdit->setObjectName("QLineEditt");
     QFont font;
     font.setPointSize(18);
     usernameEdit->setFont(font);
@@ -23,7 +28,7 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
     cansell = new QPushButton(" کنسل ");
     cansell->setObjectName("loginbutton");
     sign = new QPushButton("ثبت نام کنید");
-    sign->setObjectName("signbutton");
+    sign->setObjectName("signbuttonn");
 
 
     statusLabel = new QLabel(this);
@@ -89,7 +94,7 @@ loginpage::loginpage(QWidget *parent) : QWidget(parent) {
     vcentrallayout->addStretch();
 
     setLayout(vcentrallayout);
-
+     //this->setStyleSheet("QWidget#loginpage { background-color: #d0f0c0; }");
 
 
     // کانکت ها
@@ -115,11 +120,11 @@ void loginpage::tryLogin() {
     bool found = false;
     while (!in.atEnd()) {
         QString line = in.readLine();
-        QStringList parts = line.split(',');
-        if (parts.size() == 2) {
-            QString fileUser = parts[0].trimmed();
-            QString filePass = parts[1].trimmed();
-            if (fileUser == user && filePass == pass) {
+        QStringList part = line.split(',');
+        if (part.size() == 2) {
+            QString userr = part[0].trimmed();
+            QString passs = part[1].trimmed();
+            if (userr == user && passs == pass) {
                 found = true;
                 break;
             }

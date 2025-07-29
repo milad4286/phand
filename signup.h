@@ -47,7 +47,7 @@ private:
     QVBoxLayout *vcentrallayout;
 
     QFrame *frame;
-    QGraphicsDropShadowEffect *shadow;
+    //QGraphicsDropShadowEffect *shadow;
 
 
 };

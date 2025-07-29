@@ -11,11 +11,16 @@ homepage::homepage(QWidget *parent) : QWidget(parent) {
 
     btngotologinpage = new QPushButton("ورود / ثبت‌نام");
     btngotologinpage->setMinimumSize(150, 50);
+    btngotologinpage->setObjectName("QPushButtonn");
+
     layout->addWidget(btngotologinpage);
 
     btngototranslatepage = new QPushButton("صفحه ترجمه");
     btngototranslatepage->setMinimumSize(150, 50);
     layout->addWidget(btngototranslatepage);
+    btngototranslatepage->setObjectName("QPushButtonn");
+
+
     layout->addStretch();
     setLayout(layout);
     // connects

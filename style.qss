@@ -1,25 +1,77 @@
 #loginbutton {
     background-color: #0078d7;
     color: white;
-    border-radius: 8px;
-    padding: 8px;
+    border: 2px solid #005a9e;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #loginbutton:hover {
     background-color: #005a9e;
-    color:green ;
-    border-redius: 20px ;
-    padding: 20px ;
+    color: white;
+    border-radius: 14px;
+    padding: 12px;
 }
+
+#QLineEditt {
+    background-color: #e0e0e0;        /* خاکستری روشن */
+    border: 2px solid #b0b0b0;        /* حاشیه نرم خاکستری */
+    border-radius: 15px;
+    padding: 12px 10px;
+    color: #333333;                   /* رنگ نوشته */
+    font-size: 20px;
+}
+
+#QLineEditt:focus {
+    border: 1px solid #0078d7;        /* رنگ آبی هنگام فوکوس */
+    background-color: #f5f5f5;        /* کمی روشن‌تر برای تمرکز */
+    outline: none;
+}
+
+#QPushButtonn {
+    background-color: #64b5f6;     /* آبی اصلی با کنتراست مناسب */
+    color: white;                  /* متن سفید برای خوانایی بالا */
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 120px;
+    min-height: 40px;
+}
+
+#QPushButtonn:hover {
+    background-color: #42a5f5;     /* کمی تیره‌تر هنگام هاور */
+}
+
+#QPushButtonn:pressed {
+    background-color: #1e88e5;     /* حالت فشرده‌شده */
+}
+
 
 #mainwidget {
 
-background-color:lightgreen;
+#background-color:lightgreen;
 }
 
-#signbutton {
-    //background-color: #;
-    color: white;
-    border-radius: 8px;
-    padding: 8px;
+#signbuttonn {
+    background-color: white;
+    color: #1976d2; /* آبی تیره برای هماهنگی با تم */
+    border: 2px solid #1976d2;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    min-width: 80px;
+    min-height: 24px;
 }
+
+#signbuttonn:hover {
+    background-color: #e3f2fd; /* آبی روشن ملایم برای هاور */
+}
+
+#signbuttonn:pressed {
+    background-color: #bbdefb; /* آبی کمی تیره‌تر هنگام کلیک */
+}
+

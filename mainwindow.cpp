@@ -6,6 +6,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
+    //setStyleSheet("color:lightgreen");
 
     auto *centralw = new QWidget(this);
     stack          = new QStackedWidget();

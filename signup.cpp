@@ -4,7 +4,10 @@
 signup::signup(QWidget *parent) : QWidget(parent){
 
     sign_name = new QLineEdit;
+    sign_name->setObjectName("QLineEditt");
     sign_password = new QLineEdit;
+    sign_password->setObjectName("QLineEditt");
+
 
     sign_enter = new QPushButton("ثبت نام");
     sign_back = new QPushButton("صفحه ورود");
@@ -56,8 +59,8 @@ signup::signup(QWidget *parent) : QWidget(parent){
     frame->setLayout(verloglayout);
     frame->setMinimumSize(600, 400); //  اندازه دلخواه وسط صفحه
 
-    shadow = new QGraphicsDropShadowEffect(this);
-    frame->setGraphicsEffect(shadow);
+    //shadow = new QGraphicsDropShadowEffect(this);
+    //frame->setGraphicsEffect(shadow);
 
     vcentrallayout = new QVBoxLayout(this);
 
@@ -89,10 +92,10 @@ void signup::enters(){
         return;
     }
 
-    // ذخیره در فایل
+    // ذخیره فایل
     QFile file("userdata.txt");
     if (!file.open(QIODevice::Append | QIODevice::Text)) {
-        statusLabel->setText("خطا در ذخیره اطلاعات.");
+        statusLabel->setText("خطای ذخیره اطلاعات.");
         return;
     }
 
