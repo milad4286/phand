@@ -20,6 +20,7 @@ compile_commands.json
 CTestTestfile.cmake
 CPackConfig.cmake
 CPackSourceConfig.cmake
+local_config.cmake
 
 # --- Ninja ---
 .ninja_deps
