@@ -1,0 +1,1 @@
+set(OpenCV_DIR "C:/Users/milad/Downloads/opencv/build/x64/vc16/lib" )
