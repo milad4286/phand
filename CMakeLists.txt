@@ -13,7 +13,12 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 # مسیر OpenCV
-set(OpenCV_DIR "D:/open_CV/opencv/build/x64/vc16/lib/cmake/opencv4")
+#set(OpenCV_DIR "C:/Users/milad/Downloads/opencv/build/x64/vc16/lib")
+if(EXISTS "${CMAKE_SOURCE_DIR}/local_config.cmake")
+    include("${CMAKE_SOURCE_DIR}/local_config.cmake")
+endif()
+
+
 find_package(OpenCV REQUIRED)
 
 

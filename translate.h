@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QImage> // مناسب هم برای دخیره و هم برای پردازش تصویر بر خلاف pixmap
 #include<QFrame>
+
 class translate : public QWidget
 {
     Q_OBJECT
@@ -15,15 +16,18 @@ public:
     explicit translate(QWidget *parent = nullptr);
 
 private slots:
-    void loadImage(); // بارگذاری عکس از کاربر
 
+    void loadImage(); // بارگذاری عکس از کاربر
+    void convertToGray();
 private:
-    QLabel *imageLabel; //  لیبل برای نمایش عکس
-    QImage loadedImage; // تصویر اصلی برای پردازش
+     QLabel *imageLabel; //  لیبل برای نمایش عکس
+     QImage loadedImage; // تصویر اصلی برای پردازش
      QPushButton *select_image;
      QPushButton *select_vedio;
      QPushButton *select_cam;
-    QFrame * mainframe ;
+     QFrame * mainframe ;
+     QPushButton *gray_button;
+
     void displayImage(const QImage &image); // تابع برای نمایش عکس
 };
 
