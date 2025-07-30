@@ -21,7 +21,6 @@ CPackConfig.cmake
 CPackSourceConfig.cmake
 local_config.cmake
 
-
 # --- Ninja ---
 .ninja_deps
 .ninja_log
