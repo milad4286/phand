@@ -2,11 +2,10 @@
 #define TRANSLATE_H
 
 #include <QWidget>
-#include <QLabel>
 #include <QPushButton>
-#include <QVBoxLayout>
-#include <QImage> // مناسب هم برای دخیره و هم برای پردازش تصویر بر خلاف pixmap
-#include<QFrame>
+#include <QLabel>
+#include <QFrame>
+#include <QImage>
 
 class translate : public QWidget
 {
@@ -16,19 +15,14 @@ public:
     explicit translate(QWidget *parent = nullptr);
 
 private slots:
-
-    void loadImage(); // بارگذاری عکس از کاربر
+    void loadImage();
     void convertToGray();
-private:
-     QLabel *imageLabel; //  لیبل برای نمایش عکس
-     QImage loadedImage; // تصویر اصلی برای پردازش
-     QPushButton *select_image;
-     QPushButton *select_vedio;
-     QPushButton *select_cam;
-     QFrame * mainframe ;
-     QPushButton *gray_button;
 
-    void displayImage(const QImage &image); // تابع برای نمایش عکس
+private:
+    QLabel *imageLabel;
+    QPushButton *select_image;
+    QPushButton *gray_button;
+    QImage currentImage;
 };
 
 #endif // TRANSLATE_H
