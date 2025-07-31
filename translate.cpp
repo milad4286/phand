@@ -15,6 +15,17 @@ translate::translate(QWidget *parent)
     mainframe->setStyleSheet("QFrame { border: 2px solid gray; }");
     mainframe->setFixedSize(400, 400);
 
+    // دکمه‌ها
+    select_image = new QPushButton("انتخاب تصویر", this);
+    gray_button  = new QPushButton("تبدیل به خاکستری", this);
+    grid_button  = new QPushButton("گرید کردن", this);
+
+    // استایل
+    select_image->setObjectName("loginbutton");
+    gray_button->setObjectName("loginbutton_cv");
+    grid_button->setObjectName("loginbutton_cv");
+
+
     // لیبل نمایش تصویر
     imageLabel = new QLabel(mainframe);
     imageLabel->setAlignment(Qt::AlignCenter);
@@ -23,6 +34,7 @@ translate::translate(QWidget *parent)
     QVBoxLayout *frameInnerLayout = new QVBoxLayout(mainframe);
     frameInnerLayout->addWidget(imageLabel);
     frameInnerLayout->setContentsMargins(0, 0, 0, 0);
+
 
     // دکمه‌ها
     select_image = new QPushButton("انتخاب تصویر", this);
@@ -34,15 +46,26 @@ translate::translate(QWidget *parent)
     connect(reset_button, &QPushButton::clicked  , this , &translate::reset);
     connect(gray_button , &QPushButton::clicked  , this , &translate::convertToGray);
     connect(blur_button , &QPushButton::clicked  , this , &translate::convertToBlur);
+    connect(grid_button, &QPushButton::clicked, this, &translate::applyGrid);
+
+
+
+
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->addWidget(gray_button);
-    buttonLayout->addWidget(blur_button);
+
     buttonLayout->addWidget(select_image);
     buttonLayout->addWidget(reset_button);
 
+    QVBoxLayout *button_cv = new QVBoxLayout();
+    button_cv->addWidget(gray_button);
+    button_cv->addWidget(grid_button);
+    button_cv->addWidget(gray_button);
+    button_cv->addWidget(blur_button);
+
     QHBoxLayout *frameCenterLayout = new QHBoxLayout();
     frameCenterLayout->addStretch();
+    frameCenterLayout->addLayout(button_cv);
     frameCenterLayout->addWidget(mainframe);
     frameCenterLayout->addStretch();
 
@@ -96,6 +119,7 @@ void translate::convertToGray()
     }
 }
 
+
 ///////////////////////////// convert to blur
 
 void translate::convertToBlur(){
@@ -113,5 +137,23 @@ void translate::convertToBlur(){
     }
 
 
+}
+
+void translate::applyGrid()
+{
+    if (currentImage.isNull())
+        return;
+
+    cv::Mat inputMat = OpenCVUtils::QImageToCvMat(currentImage);
+    cv::Mat outputMat;
+
+    std::vector<cv::Rect> grid = OpenCVUtils::drawGridOnImage(inputMat, outputMat);
+
+    QImage resultImage = OpenCVUtils::convertMatToQImage(outputMat);
+    if (!resultImage.isNull()) {
+        currentImage = resultImage;
+        imageLabel->setPixmap(QPixmap::fromImage(currentImage).scaled(
+            imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
 }
 
