@@ -29,7 +29,7 @@ translate::translate(QWidget *parent)
     gray_button  = new QPushButton("تبدیل به خاکستری", this);
 
     connect(select_image, &QPushButton::clicked, this, &translate::loadImage);
-    connect(gray_button, &QPushButton::clicked, this, &translate::convertToGray);
+    connect(gray_button, &QPushButton::clicked, this,  &translate::convertToGray);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(gray_button);
@@ -66,6 +66,7 @@ void translate::loadImage()
 
 void translate::convertToGray()
 {
+
     if (currentImage.isNull())
         return;
 
@@ -76,6 +77,7 @@ void translate::convertToGray()
     qDebug() << "Format:" << grayImage.format();
 
     if (!grayImage.isNull()) {
+
         currentImage = grayImage;
         imageLabel->setPixmap(QPixmap::fromImage(currentImage).scaled(
             imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));

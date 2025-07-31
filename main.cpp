@@ -13,15 +13,21 @@ QString loadStyleSheet(const QString& fileName) {
     return in.readAll();
 }
 
+
+
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
     // لود کردن QSS
-    QString style = loadStyleSheet("D:/qt project/QT_widget/phand/style.qss");
 
+    // لود کردن QSS
+    QString path = QCoreApplication::applicationDirPath() + "/style.qss";
+    QString qss = loadStyleSheet(path);
 
-    a.setStyleSheet(style);
+    if (!qss.isEmpty()) {
+        a.setStyleSheet(qss); // ✅ فقط این کافی‌ست
+    }
 
     MainWindow w;
     w.setWindowTitle(" مترجم زبان اشاره ");
