@@ -64,3 +64,34 @@ QImage OpenCVUtils::detectEdges(const QImage &inputImage)
 
     return convertMatToQImage(edges);
 }
+
+/////////////////////////////////گرید کردن
+
+std::vector<cv::Rect> OpenCVUtils::drawGridOnImage(const cv::Mat& inputImage, cv::Mat& outputImage)
+{
+    std::vector<cv::Rect> gridRects;
+
+    int rows = 14;
+    int cols = 14;
+
+    if (inputImage.empty() || rows <= 0 || cols <= 0)
+        return gridRects;
+
+    outputImage = inputImage.clone();
+
+    int cellWidth = inputImage.cols / cols;
+    int cellHeight = inputImage.rows / rows;
+
+    for (int row = 0; row < rows; ++row) {
+        for (int col = 0; col < cols; ++col) {
+            int x = col * cellWidth;
+            int y = row * cellHeight;
+            cv::Rect rect(x, y, cellWidth, cellHeight);
+            gridRects.push_back(rect);
+            cv::rectangle(outputImage, rect, cv::Scalar(0, 0, 255), 1);
+        }
+    }
+
+    return gridRects;
+}
+

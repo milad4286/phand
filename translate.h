@@ -17,11 +17,14 @@ public:
 private slots:
     void loadImage();
     void convertToGray();
+    void applyGrid();
+
 
 private:
     QLabel *imageLabel;
     QPushButton *select_image;
     QPushButton *gray_button;
+    QPushButton *grid_button;
     QImage currentImage;
 };
 
