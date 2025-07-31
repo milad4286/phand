@@ -18,12 +18,15 @@ translate::translate(QWidget *parent)
     // دکمه‌ها
     select_image = new QPushButton("انتخاب تصویر", this);
     gray_button  = new QPushButton("تبدیل به خاکستری", this);
-    grid_button  = new QPushButton("گرید کردن", this);
-
+    blur_button = new QPushButton(" تبدیل به بلور ", this) ;
+    reset_button = new QPushButton ("ریست", this) ;
+    grid_button = new QPushButton(" گرید کردن", this);
     // استایل
     select_image->setObjectName("loginbutton");
+    reset_button->setObjectName("loginbutton");
     gray_button->setObjectName("loginbutton_cv");
     grid_button->setObjectName("loginbutton_cv");
+    blur_button->setObjectName("loginbutton_cv");
 
 
     // لیبل نمایش تصویر
@@ -36,11 +39,7 @@ translate::translate(QWidget *parent)
     frameInnerLayout->setContentsMargins(0, 0, 0, 0);
 
 
-    // دکمه‌ها
-    select_image = new QPushButton("انتخاب تصویر", this);
-    gray_button  = new QPushButton("تبدیل به خاکستری", this);
-    blur_button = new QPushButton(" تبدیل به بلور ", this) ;
-    reset_button = new QPushButton ("ریست", this) ;
+
 
     connect(select_image, &QPushButton::clicked  , this , &translate::loadImage);
     connect(reset_button, &QPushButton::clicked  , this , &translate::reset);
@@ -58,10 +57,11 @@ translate::translate(QWidget *parent)
     buttonLayout->addWidget(reset_button);
 
     QVBoxLayout *button_cv = new QVBoxLayout();
-    button_cv->addWidget(gray_button);
+
     button_cv->addWidget(grid_button);
     button_cv->addWidget(gray_button);
     button_cv->addWidget(blur_button);
+
 
     QHBoxLayout *frameCenterLayout = new QHBoxLayout();
     frameCenterLayout->addStretch();
