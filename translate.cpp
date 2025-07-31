@@ -27,13 +27,19 @@ translate::translate(QWidget *parent)
     // دکمه‌ها
     select_image = new QPushButton("انتخاب تصویر", this);
     gray_button  = new QPushButton("تبدیل به خاکستری", this);
+    blur_button = new QPushButton(" تبدیل به بلور ", this) ;
+    reset_button = new QPushButton ("ریست", this) ;
 
-    connect(select_image, &QPushButton::clicked, this, &translate::loadImage);
-    connect(gray_button, &QPushButton::clicked, this,  &translate::convertToGray);
+    connect(select_image, &QPushButton::clicked  , this , &translate::loadImage);
+    connect(reset_button, &QPushButton::clicked  , this , &translate::reset);
+    connect(gray_button , &QPushButton::clicked  , this , &translate::convertToGray);
+    connect(blur_button , &QPushButton::clicked  , this , &translate::convertToBlur);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(gray_button);
+    buttonLayout->addWidget(blur_button);
     buttonLayout->addWidget(select_image);
+    buttonLayout->addWidget(reset_button);
 
     QHBoxLayout *frameCenterLayout = new QHBoxLayout();
     frameCenterLayout->addStretch();
@@ -59,10 +65,18 @@ void translate::loadImage()
     if (img.isNull()) return;
 
     currentImage = img;
+    mainimage = img ;
     imageLabel->setPixmap(QPixmap::fromImage(currentImage).scaled(
         imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
+//////////////////////////////////// reset
 
+void translate::reset(){
+
+    imageLabel->setPixmap(QPixmap::fromImage(mainimage).scaled(
+        imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+}
 
 void translate::convertToGray()
 {
@@ -71,10 +85,6 @@ void translate::convertToGray()
         return;
 
     QImage grayImage = OpenCVUtils::convertToGray(currentImage);
-
-    // اضافه کردن تست دیباگ
-    qDebug() << "Gray Image Size:" << grayImage.size();
-    qDebug() << "Format:" << grayImage.format();
 
     if (!grayImage.isNull()) {
 
@@ -85,3 +95,23 @@ void translate::convertToGray()
         qDebug() << "Gray image is null!";
     }
 }
+
+///////////////////////////// convert to blur
+
+void translate::convertToBlur(){
+
+    if (currentImage.isNull())
+        return;
+    QImage blurimage = OpenCVUtils::applyBlur(currentImage);
+    if (!blurimage.isNull()) {
+
+        currentImage = blurimage;
+        imageLabel->setPixmap(QPixmap::fromImage(currentImage).scaled(
+            imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    } else {
+        qDebug() << "blur image is null!";
+    }
+
+
+}
+

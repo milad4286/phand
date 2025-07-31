@@ -17,12 +17,17 @@ public:
 private slots:
     void loadImage();
     void convertToGray();
+    void convertToBlur();
+    void reset();
 
 private:
     QLabel *imageLabel;
     QPushButton *select_image;
     QPushButton *gray_button;
+    QPushButton *blur_button;
+    QPushButton *reset_button ;
     QImage currentImage;
+    QImage mainimage;
 };
 
 #endif // TRANSLATE_H
