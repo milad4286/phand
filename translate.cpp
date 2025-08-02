@@ -21,12 +21,15 @@ translate::translate(QWidget *parent)
     blur_button = new QPushButton(" تبدیل به بلور ", this) ;
     reset_button = new QPushButton ("ریست", this) ;
     grid_button = new QPushButton(" گرید کردن", this);
+    edge_button = new QPushButton("لبه یابی", this);
+
     // استایل
     select_image->setObjectName("loginbutton");
     reset_button->setObjectName("loginbutton");
     gray_button->setObjectName("loginbutton_cv");
     grid_button->setObjectName("loginbutton_cv");
     blur_button->setObjectName("loginbutton_cv");
+    edge_button->setObjectName("loginbutton_cv");
 
 
     // لیبل نمایش تصویر
@@ -41,11 +44,12 @@ translate::translate(QWidget *parent)
 
 
 
-    connect(select_image, &QPushButton::clicked  , this , &translate::loadImage);
-    connect(reset_button, &QPushButton::clicked  , this , &translate::reset);
-    connect(gray_button , &QPushButton::clicked  , this , &translate::convertToGray);
-    connect(blur_button , &QPushButton::clicked  , this , &translate::convertToBlur);
-    connect(grid_button, &QPushButton::clicked, this, &translate::applyGrid);
+    connect(select_image , &QPushButton::clicked  , this , &translate::loadImage);
+    connect(reset_button , &QPushButton::clicked  , this , &translate::reset);
+    connect(gray_button  , &QPushButton::clicked  , this , &translate::convertToGray);
+    connect(blur_button  , &QPushButton::clicked  , this , &translate::convertToBlur);
+    connect(grid_button  , &QPushButton::clicked  , this , &translate::applyGrid);
+    connect(edge_button  , &QPushButton::clicked  , this , &translate::edge_detection);
 
 
 
@@ -61,6 +65,7 @@ translate::translate(QWidget *parent)
     button_cv->addWidget(grid_button);
     button_cv->addWidget(gray_button);
     button_cv->addWidget(blur_button);
+    button_cv->addWidget(edge_button);
 
 
     QHBoxLayout *frameCenterLayout = new QHBoxLayout();
@@ -96,6 +101,7 @@ void translate::loadImage()
 
 void translate::reset(){
 
+    currentImage = mainimage;
     imageLabel->setPixmap(QPixmap::fromImage(mainimage).scaled(
         imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
@@ -155,5 +161,21 @@ void translate::applyGrid()
         imageLabel->setPixmap(QPixmap::fromImage(currentImage).scaled(
             imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
+}
+
+void translate::edge_detection(){
+    if (currentImage.isNull())
+        return;
+
+    QImage input = currentImage;
+    QImage output = OpenCVUtils::edgedetection(input);
+    QImage resultImage = output;
+
+    if (!resultImage.isNull()) {
+        currentImage = resultImage;
+        imageLabel->setPixmap(QPixmap::fromImage(currentImage).scaled(
+            imageLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    }
+
 }
 

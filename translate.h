@@ -17,22 +17,19 @@ public:
 private slots:
     void loadImage();
     void convertToGray();
-
     void convertToBlur();
     void reset();
-
     void applyGrid();
-
+    void edge_detection();
 
 
 private:
     QLabel *imageLabel;
     QPushButton *select_image;
     QPushButton *gray_button;
-
+    QPushButton *edge_button;
     QPushButton *blur_button;
     QPushButton *reset_button ;
-
     QPushButton *grid_button;
 
     QImage currentImage;

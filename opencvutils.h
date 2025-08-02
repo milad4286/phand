@@ -19,7 +19,7 @@ public:
     static QImage applyBlur(const QImage &inputImage);
     static QImage detectEdges(const QImage &inputImage);
     static std::vector<cv::Rect> drawGridOnImage(const cv::Mat& inputImage, cv::Mat& outputImage);
-
+    static QImage edgedetection(const QImage &inputImage);
 };
 
 #endif // OPENCVUTILS_H

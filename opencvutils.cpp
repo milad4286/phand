@@ -95,3 +95,16 @@ std::vector<cv::Rect> OpenCVUtils::drawGridOnImage(const cv::Mat& inputImage, cv
     return gridRects;
 }
 
+QImage OpenCVUtils::edgedetection(const QImage &inputImage){
+
+    cv::Mat edgee = QImageToCvMat(inputImage);
+    cv::Mat gray, blurred, edges;
+    cv::cvtColor(edgee, gray, cv::COLOR_BGR2GRAY);
+    cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 1.4);
+    cv::Canny(blurred, edges, 50, 150);
+
+
+    return convertMatToQImage(edges);
+}
+
+
